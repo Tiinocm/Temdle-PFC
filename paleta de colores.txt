@@ -1,0 +1,10 @@
+Amarillo: #FFFF24
+
+Morado: #7800F5
+
+
+paleta de colores 1:
+#F9FF5C
+#E0FBFC
+#3A1772 
+#9F66F0
