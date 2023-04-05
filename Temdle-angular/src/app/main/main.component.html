@@ -2,10 +2,20 @@
     <app-header></app-header>
     <main>
         <div class="flex justify-center">
-            <form action="">
+
+            <form (ngSubmit)="onSubmit()">
                 <label for="search" class="sr-only">Busca un temtem</label>
                 <input type="text" name="search" id="search" placeholder="Busca un temtem..." class="h-11 m-5 p-2 w-4/5 rounded-xl focus:w-full transition-width  transition-slowest ease-in-out">
-            </form>    
+                <mat-select name="temtem" id="select" placeholder="Busca un temtem..." class="h-11 m-5 p-2 w-4/5 rounded-xl bg-white" [(ngModel)]="selectTem">
+                    <mat-option value="">
+                        <ngx-mat-select-search placeholderLabel="Busca un temtem..." noEntriesFoundLabel="'Ningún temtem encontrado'" [formControl]="searchCtrl"></ngx-mat-select-search>
+                    </mat-option>
+                     <mat-option *ngFor="let temtem of temtems" value="{{temtem.number}}">
+                        {{temtem.name}}
+                    </mat-option>
+                </mat-select>
+                <button type="submit" class="bg-white p-2 rounded-xl m-2">Submit</button>
+            </form>
         </div>
     </main>
 </section>

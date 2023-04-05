@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body{
-    min-height: 100%;
-}
-
 body{
     background-image: url("../src/assets/temdle_bg.png");
     background-size: cover;
 }
+html, body { height: 100%; }
+body { margin: 0; }
