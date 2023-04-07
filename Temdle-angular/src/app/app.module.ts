@@ -12,13 +12,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TEMplateComponent } from './template/template.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    MainComponent
+    MainComponent,
+    TEMplateComponent
   ],
   imports: [
     BrowserModule,

@@ -1,21 +1,24 @@
 <section class="fondomain flex flex-col break-inside-avoid">
     <app-header></app-header>
     <main>
-        <div class="flex justify-center">
+        <div class="flex justify-center w-3/5 m-auto">
 
-            <form (ngSubmit)="onSubmit()">
+            <form (ngSubmit)="onSubmit()" class="flex">
                 <label for="search" class="sr-only">Busca un temtem</label>
-                <input type="text" name="search" id="search" placeholder="Busca un temtem..." class="h-11 m-5 p-2 w-4/5 rounded-xl focus:w-full transition-width  transition-slowest ease-in-out">
-                <mat-select name="temtem" id="select" placeholder="Busca un temtem..." class="h-11 m-5 p-2 w-4/5 rounded-xl bg-white" [(ngModel)]="selectTem">
-                    <mat-option value="">
-                        <ngx-mat-select-search placeholderLabel="Busca un temtem..." noEntriesFoundLabel="'Ningún temtem encontrado'" [formControl]="searchCtrl"></ngx-mat-select-search>
+                <mat-select name="temtem" id="select" placeholder="Busca un temtem..." class="h-11 my-5 px-5 mx-auto p-2 rounded-s-xl bg-white shadow-md min-w-full" [(ngModel)]="selectTem">
+                    <mat-option value="def" selected>
+                        <ngx-mat-select-search placeholderLabel="Busca un temtem..." noEntriesFoundLabel="Ningún temtem encontrado" [formControl]="searchCtrl"></ngx-mat-select-search>
                     </mat-option>
-                     <mat-option *ngFor="let temtem of temtems" value="{{temtem.number}}">
-                        {{temtem.name}}
+                     <mat-option *ngFor="let temtem of temtems" value="{{temtem.number}}" class="flex justify-between" (click)="showBtn()" >
+                       <span class=""> {{temtem.name}} </span> <img src="{{temtem.portraitWikiUrl}}" alt="" class="inline-block">
                     </mat-option>
                 </mat-select>
-                <button type="submit" class="bg-white p-2 rounded-xl m-2">Submit</button>
+                <button type="submit" id="searchBtn" class="bg-slate-300 p-2 rounded-e-xl my-auto h-11 shadow-md">Go!</button>
             </form>
+        </div>
+
+        <div id="temtemDiv" #placeToRender >
+
         </div>
     </main>
 </section>
