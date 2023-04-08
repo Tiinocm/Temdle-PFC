@@ -14,6 +14,7 @@ export class TEMplateComponent {
 
   public selectedTem : string = "";
   public infoTem : any = Temtem;
+  public sticker : string = "";
 
   constructor(public service : TemtemApiService) {}
 
@@ -24,11 +25,17 @@ export class TEMplateComponent {
 
   private getTemInfo()
   {
-    let info;
     this.service.getTemtem(this.selectedTem).subscribe(response => {
       this.infoTem = response;
+      if (response.number < 10) {
+        this.sticker = "M00" + response.number + ".png";
+      }else if (response.number < 100) {
+        this.sticker = "M0" + response.number + ".png";
+      }else {
+        this.sticker = "M" + response.number + ".png";
+      }
     })
 
-
   }
+  
 }

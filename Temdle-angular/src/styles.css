@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'temfont';
+    src: url('../src/assets/Font/Temfont-Regular.ttf');
+}
+
 body{
     background-image: url("../src/assets/temdle_bg.png");
     background-size: cover;
+    font-size: 'rubik';
 }
 html, body { height: 100%; }
 body { margin: 0; }

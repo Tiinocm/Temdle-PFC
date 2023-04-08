@@ -62,9 +62,11 @@ export class MainComponent {
 
   public onSubmit() : void
   {
-    const temtemDiv = document.getElementById("temtemDiv");
-    const temRef = this.placeToRender.createComponent(TEMplateComponent);
-    temRef.instance.selectedTem = this.selectTem;
+    if (this.selectTem.length > 0) {
+      const temRef = this.placeToRender.createComponent(TEMplateComponent);
+      temRef.instance.selectedTem = this.selectTem;
+    }
+
     this.selectTem = this.defSelect;
     let button : HTMLElement = document.getElementById("searchBtn")!;
     button.style.backgroundColor = "rgb(203 213 225)";

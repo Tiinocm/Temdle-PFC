@@ -9,15 +9,15 @@
                     <mat-option value="def" selected>
                         <ngx-mat-select-search placeholderLabel="Busca un temtem..." noEntriesFoundLabel="Ningún temtem encontrado" [formControl]="searchCtrl"></ngx-mat-select-search>
                     </mat-option>
-                     <mat-option *ngFor="let temtem of temtems" value="{{temtem.number}}" class="flex justify-between" (click)="showBtn()" >
-                       <span class=""> {{temtem.name}} </span> <img src="{{temtem.portraitWikiUrl}}" alt="" class="inline-block">
+                     <mat-option *ngFor="let temtem of temtems" value="{{temtem.number}}" class="opcion" (click)="showBtn()" >
+                       <span class="inline-block w-[140px]"> {{temtem.name}} </span> <img src="{{temtem.portraitWikiUrl}}" alt="" class="inline-block float-right">
                     </mat-option>
                 </mat-select>
                 <button type="submit" id="searchBtn" class="bg-slate-300 p-2 rounded-e-xl my-auto h-11 shadow-md">Go!</button>
             </form>
         </div>
 
-        <div id="temtemDiv" #placeToRender >
+        <div id="temtemDiv" class="mt-16" #placeToRender >
 
         </div>
     </main>

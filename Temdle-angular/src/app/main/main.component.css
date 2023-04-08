@@ -5,3 +5,7 @@
 /* .cdk-overlay-pane:not(.mat-mdc-select-panel-above) .mdc-menu-surface.mat-mdc-select-panel {
     margin-right: 15px;
 } */
+
+.opcion{
+    padding-right: 0px !important;
+}
