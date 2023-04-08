@@ -1,4 +1,11 @@
 <section class="m-auto w-2/3 p-3 bg-white rounded-xl my-14 font-medium text-6xl tracking-widest flex center align-middle h-32">
-   <div class="inline w-2/4"> {{infoTem.name}} </div> <img src="../../assets/stickers/{{sticker}}" alt="sticker de {{infoTem.name}}" class="relative float-right w-auto left-20 bottom-20 h-56">
+   <div class="inline w-2/4"> {{infoTem.name}}
+      <div class="float-left w-auto">
+         <img *ngFor="let type of types" src="../../assets/Icons/Types/{{type}}.png" alt="icon of {{type}} type" class="inline-block w-10">
+      </div>   
+   
+   </div> 
+   <img src="../../assets/stickers/{{sticker}}" alt="sticker of {{infoTem.name}}" class="relative float-right w-auto left-20 bottom-20 h-56">
+
 
 </section>
