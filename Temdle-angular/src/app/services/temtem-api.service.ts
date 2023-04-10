@@ -52,6 +52,6 @@ export class TemtemApiService {
       headers: new HttpHeaders(headerDict), 
     };
 
-    return this.http.get<TypesResponse[]>(this.commonUrl + "types", requestOptions)
+    return this.http.get<TypesResponse[]>(this.commonUrl + "types")
   }
 }

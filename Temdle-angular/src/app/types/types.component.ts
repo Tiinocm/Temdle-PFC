@@ -8,6 +8,8 @@ import { TemtemApiService } from "src/app/services/temtem-api.service";
 })
 export class TypesComponent {
 
+  types : any = [];
+
   constructor(public service : TemtemApiService) {}
 
   ngOnInit()
@@ -18,8 +20,7 @@ export class TypesComponent {
   public getTypes() 
   {
     this.service.getTypes().subscribe(response =>{
-      console.log(response);
-      
+      this.types = response;
     });
   }
 }

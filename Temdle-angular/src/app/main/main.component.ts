@@ -65,6 +65,7 @@ export class MainComponent {
     if (this.selectTem.length > 0) {
       const temRef = this.placeToRender.createComponent(TEMplateComponent);
       temRef.instance.selectedTem = this.selectTem;
+      // managear session storage para que, por un lado, pase los tipos de los temtem probados en un array, comprobando si está repetido o no para evitar redundancia, y así poder pasarlo a types.component
     }
 
     this.selectTem = this.defSelect;
@@ -74,7 +75,6 @@ export class MainComponent {
 
   public showBtn()
   {
-    //mostrar el botón de "go" (submit) cuando se selecciona una opción
     let button : HTMLElement = document.getElementById("searchBtn")!;
     button.style.backgroundColor = "#32a852";
   }
