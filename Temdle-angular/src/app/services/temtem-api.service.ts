@@ -27,7 +27,7 @@ export class TemtemApiService {
     return this.http.get<temtemsResponse[]>(this.commonUrl + "temtems")
   }
 
-  public getTemtem(number : string) : Observable<temtemsResponse> {
+  public getTemtem(number : string | number) : Observable<temtemsResponse> {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

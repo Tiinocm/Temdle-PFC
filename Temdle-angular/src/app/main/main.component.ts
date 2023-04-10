@@ -18,24 +18,40 @@ export class MainComponent {
   @ViewChild('placeToRender', { read: ViewContainerRef })
   placeToRender!: ViewContainerRef;
 
-
+  // search stuff
   public selectTem : any;
   public search : any;
   public defSelect = null;
 
+  // form control search stuff
   public searchCtrl : FormControl<string | null> = new FormControl<string>('');
 
+  //api response value
   public temtems : temtemsResponse[] = [];
   public allTemtems : any = null;
   public lastSearchValue : string = "";
+
+  // game logic stuff
+  public testedTypes : string[] = [];
+  public targetId : number = 1;
+  public target : any = ""
+
   ngOnInit() : void
   {
     this.defSelect = this.selectTem;
 
     this.getTems();
+    this.getTarget()
     this.searchCtrl.valueChanges.pipe().subscribe(() =>{
       this.filterTems();
       
+    })
+  }
+
+  private getTarget()
+  {
+    this.service.getTemtem(this.targetId).subscribe(response =>{
+      this.target = response;
     })
   }
 
@@ -65,12 +81,47 @@ export class MainComponent {
     if (this.selectTem.length > 0) {
       const temRef = this.placeToRender.createComponent(TEMplateComponent);
       temRef.instance.selectedTem = this.selectTem;
-      // managear session storage para que, por un lado, pase los tipos de los temtem probados en un array, comprobando si está repetido o no para evitar redundancia, y así poder pasarlo a types.component
+
+      // managear session storage y cambiar los estilos de los id de los tipos
+      this.service.getTemtem(this.selectTem).subscribe(response =>{
+        this.getTemTypes(response);
+        this.changeTypesStyle();
+      })
+      
     }
 
     this.selectTem = this.defSelect;
     let button : HTMLElement = document.getElementById("searchBtn")!;
     button.style.backgroundColor = "rgb(203 213 225)";
+  }
+
+  getTemTypes(temData : any)
+  {
+    let types = temData.types;
+    for (let i = 0; i < types.length; i++) {
+      this.testedTypes.indexOf(types[i]) === -1 ? this.testedTypes.push(types[i]) : "";
+    }
+    
+  }
+
+  changeTypesStyle()
+  {
+    for (let i = 0; i < this.testedTypes.length; i++) {
+      let type = this.testedTypes[i];
+      if (this.checkType(type)) {
+        document.getElementById(type)!.classList.add("targetType", "scale-125", "transition-all")
+
+      }else{
+        document.getElementById(type)?.classList.add("opacity-20", "grayscale", "transition-all");
+      }
+      
+    }
+    
+  }
+
+  private checkType(type : string)
+  {
+    return this.target.types.indexOf(type) === -1 ? false : true;
   }
 
   public showBtn()

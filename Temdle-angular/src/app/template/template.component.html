@@ -1,5 +1,5 @@
 <section class="m-auto w-2/3 p-3 bg-white rounded-xl my-14 font-medium text-6xl tracking-widest flex center align-middle h-32">
-   <div class="inline w-2/4 text-gray-900 opacity-100 z-20"> {{infoTem.name}}
+   <div class="inline w-2/4 text-gray-900 opacity-100 z-20"> {{infoTem.name}} <!-- si es chromeon o koish, cortar el nombre por el espacio -->
       <div class="float-left w-auto h-full flex">
          <img *ngFor="let type of types" src="../../assets/Icons/Types/{{type}}.png" alt="icon of {{type}} type" class="inline-block w-auto h-36 opacity-10 relative bottom-20 rotate-6 z-10 select-none pointer-events-none" unselectable="on">
       </div>   
