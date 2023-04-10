@@ -13,6 +13,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TEMplateComponent } from './template/template.component';
+import { TypesComponent } from './types/types.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TEMplateComponent } from './template/template.component';
     AppComponent,
     HeaderComponent,
     MainComponent,
-    TEMplateComponent
+    TEMplateComponent,
+    TypesComponent
   ],
   imports: [
     BrowserModule,

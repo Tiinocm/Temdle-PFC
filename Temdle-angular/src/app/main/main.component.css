@@ -1,5 +1,6 @@
 .fondomain{
     background-color: rgba(217, 217, 217, .75);
+    --scrollbar-track: rgba(217, 217, 217, .75) !important;
 }
 
 /* .cdk-overlay-pane:not(.mat-mdc-select-panel-above) .mdc-menu-surface.mat-mdc-select-panel {
