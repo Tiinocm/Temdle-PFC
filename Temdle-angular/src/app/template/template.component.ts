@@ -29,7 +29,10 @@ export class TEMplateComponent {
   {
     this.service.getTemtem(this.selectedTem).subscribe(response => {
       this.infoTem = response;
-
+      if(this.infoTem.name.indexOf(" ") > 0){
+        let splitted = this.infoTem.name.split(" ")
+        this.infoTem.name = splitted[0]
+      }
       //get sticker name stored in /assets..
       if (response.number < 10) {
         this.sticker = "M00" + response.number + ".png";

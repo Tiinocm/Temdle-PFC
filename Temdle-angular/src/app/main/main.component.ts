@@ -33,7 +33,7 @@ export class MainComponent {
 
   // game logic stuff
   public testedTypes : string[] = [];
-  public targetId : number = 1;
+  public targetId : number = this.getTargetId();
   public target : any = ""
 
   ngOnInit() : void
@@ -46,6 +46,11 @@ export class MainComponent {
       this.filterTems();
       
     })
+  }
+
+  getTargetId() : number
+  {
+    return 11;
   }
 
   private getTarget()
