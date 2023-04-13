@@ -1,11 +1,14 @@
-<section class="m-auto w-2/3 p-3 bg-white rounded-xl my-14 font-medium text-6xl tracking-widest flex center align-middle h-32">
-   <div class="inline w-2/4 text-gray-900 opacity-100 z-20"> {{infoTem.name}} <!-- si es chromeon o koish, cortar el nombre por el espacio -->
-      <div class="float-left w-auto h-full flex">
-         <img *ngFor="let type of types" src="../../assets/Icons/Types/{{type}}.png" alt="icon of {{type}} type" class="inline-block w-auto h-36 opacity-10 relative bottom-20 rotate-6 z-10 select-none pointer-events-none" unselectable="on">
-      </div>   
-   
+<section class="m-auto w-2/3 p-3 bg-white rounded-xl my-14 font-medium text-6xl center align-middle h-44 grid grid-cols-4 grid-rows-4">
+   <div class="col-span-2 text-gray-900 opacity-100 z-20 grid"> <span class="tracking-widest"> {{infoTem.name}}</span>
+      <div class="relative col-span-3 row-start-2 row-span-1">
+         <img *ngFor="let type of types" src="../../assets/Icons/Types/{{type}}.png" alt="icon of {{type}} type" class="inline-block w-28 h-auto opacity-10 relative bottom-20 rotate-6 z-10 select-none pointer-events-none" unselectable="on">
+      </div>
+      <div class="text-3xl col-start-1 row-start-4 col-span-5 relative bottom-20 w-96">
+         Height <span class="font-light text-gray-700 hover:text-black transition-all mr-4">{{infoTem.details.height.cm}} <img class="inline-block w-6 z-30" src="../../assets/Icons/{{this.heightImg}}.png" alt=""> </span> 
+         Weight <span class="font-light text-gray-700 hover:text-black transition-all mr-4">{{infoTem.details.weight.kg}} <img class="inline-block w-6 z-30" src="../../assets/Icons/{{this.weightImg}}.png" alt=""> </span>
+      </div>
    </div> 
-   <img src="../../assets/stickers/{{sticker}}" alt="sticker of {{infoTem.name}}" class="relative float-right w-auto left-20 bottom-20 h-56">
+   <img src="../../assets/stickers/{{sticker}}" alt="sticker of {{infoTem.name}}" class="row-span-2 relative w-52 left-20 bottom-20 max-w-none">
 
 
 </section>

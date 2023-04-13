@@ -1,4 +1,20 @@
 
+
+const Height = {
+    cm:                      0,
+    inches:                  0,
+}
+
+const Weight = {
+    kg:                      0,
+    lbs:                     0,
+}
+
+const Details = {
+    height:                   Height,
+    weight:                   Weight,
+}
+ 
 export const Temtem  = {
     number:                    "",
     name:                      "",
@@ -8,7 +24,7 @@ export const Temtem  = {
     wikiUrl:                   "",
     stats:                     [""],
     traits:                    [""],
-    details:                   "",
+    details:                   Details,
     techniques:                [],
     trivia:                    [],
     evolution:                 "",
@@ -31,3 +47,4 @@ export const Temtem  = {
     renderAnimatedImage:       "",
     renderAnimatedLumaImage:   "",
 }
+

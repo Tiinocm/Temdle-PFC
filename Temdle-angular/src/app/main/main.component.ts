@@ -50,7 +50,7 @@ export class MainComponent {
 
   getTargetId() : number
   {
-    return 11;
+    return 13;
   }
 
   private getTarget()
@@ -86,6 +86,7 @@ export class MainComponent {
     if (this.selectTem.length > 0) {
       const temRef = this.placeToRender.createComponent(TEMplateComponent);
       temRef.instance.selectedTem = this.selectTem;
+      temRef.instance.targetId = this.targetId;
 
       // managear session storage y cambiar los estilos de los id de los tipos
       this.service.getTemtem(this.selectTem).subscribe(response =>{

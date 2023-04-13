@@ -14,9 +14,14 @@ export class TEMplateComponent {
 
   public selectedTem : string = "";
   public infoTem : any = Temtem;
+  public targetId : number = 0;
+  public targetInfo : any = Temtem;
 
   public sticker : string = "";
   public types : string[] = [""];
+
+  public heightImg : string = "";
+  public weightImg : string = "";
 
   constructor(public service : TemtemApiService) {}
 
@@ -45,9 +50,44 @@ export class TEMplateComponent {
 
       //get types name stored in /assets
       this.types = response.types;
-      
+      this.getTargetInfo();
     })
 
   }
+
+  private getTargetInfo()
+  {
+    this.service.getTemtem(this.targetId).subscribe(response => {
+      this.targetInfo = response;
+
+      this.compareStats();
+    })
+  }
   
+  compareStats()
+  {
+    const temHeight : number = this.infoTem.details.height.cm
+    const targetHeight : number = this.targetInfo.details.height.cm
+
+    const temWeight : number = this.infoTem.details.weight.kg
+    const targetWeight : number = this.targetInfo.details.weight.kg
+
+    if (temHeight < targetHeight) {
+      this.heightImg = "Other/stage_up"
+    }else if (temHeight > targetHeight){
+      this.heightImg = "Other/stage_down"
+    }else{
+      this.heightImg = "Techniques/UI-Common_Techniques_Priority_VeryLow"
+    }
+    console.log("height: " + temHeight + ", " + targetHeight + ", ");
+    console.log("weight: " + temWeight + ", " + targetWeight + ", ");
+    
+    if (temWeight < targetWeight) {
+      this.weightImg = "Other/stage_up"
+    }else if (temWeight > targetWeight){
+      this.weightImg = "Other/stage_down"
+    }else{
+      this.weightImg = "Techniques/UI-Common_Techniques_Priority_VeryLow"
+    }
+  }
 }
