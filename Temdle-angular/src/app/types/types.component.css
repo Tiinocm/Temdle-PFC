@@ -4,4 +4,5 @@ h1{
 
 .targetType{
     filter: drop-shadow(0px 0px 10px #97af60);
+    opacity: 1;
 }

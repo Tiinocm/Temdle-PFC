@@ -1,7 +1,7 @@
 <section class="fondomain flex flex-col break-inside-avoid h-[100vh] overflow-y-scroll scrollbar scrollbar-thumb-gray-400">
     <app-header></app-header>
     <main>
-        <div class="flex justify-center w-3/5 m-auto">
+        <div class="flex justify-center w-3/5 m-auto" *ngIf="!hasPlayerWon">
 
             <form (ngSubmit)="onSubmit()" class="flex">
                 <label for="search" class="sr-only">Busca un temtem</label>

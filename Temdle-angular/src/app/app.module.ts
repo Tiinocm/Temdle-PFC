@@ -10,10 +10,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatDialogModule,MatDialogRef } from '@angular/material/dialog'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TEMplateComponent } from './template/template.component';
 import { TypesComponent } from './types/types.component';
+import { WinModalComponent } from './win-modal/win-modal.component';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { TypesComponent } from './types/types.component';
     HeaderComponent,
     MainComponent,
     TEMplateComponent,
-    TypesComponent
+    TypesComponent,
+    WinModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { TypesComponent } from './types/types.component';
     MatSelectModule,
     NgxMatSelectSearchModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

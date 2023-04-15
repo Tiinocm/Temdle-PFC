@@ -3,6 +3,9 @@ import { FormControl } from '@angular/forms';
 import { TemtemApiService } from "src/app/services/temtem-api.service";
 import { temtemsResponse } from '../models/temtems';
 import { TEMplateComponent } from '../template/template.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Dialog } from '@angular/cdk/dialog';
+import { WinModalComponent } from '../win-modal/win-modal.component';
 
 @Component({
   selector: 'app-main',
@@ -13,7 +16,7 @@ import { TEMplateComponent } from '../template/template.component';
 
 export class MainComponent {
 
-  public constructor(public service : TemtemApiService, public viewContainerRef: ViewContainerRef){}
+  public constructor(public service : TemtemApiService, public viewContainerRef: ViewContainerRef, public dialog : MatDialog){}
 
   @ViewChild('placeToRender', { read: ViewContainerRef })
   placeToRender!: ViewContainerRef;
@@ -35,6 +38,9 @@ export class MainComponent {
   public testedTypes : string[] = [];
   public targetId : number = this.getTargetId();
   public target : any = ""
+  
+  //win states
+  public hasPlayerWon : boolean = false;
 
   ngOnInit() : void
   {
@@ -50,7 +56,7 @@ export class MainComponent {
 
   getTargetId() : number
   {
-    return 13;
+    return 57  ;
   }
 
   private getTarget()
@@ -88,6 +94,18 @@ export class MainComponent {
       temRef.instance.selectedTem = this.selectTem;
       temRef.instance.targetId = this.targetId;
 
+      if (this.selectTem == this.targetId) {
+        console.log("has ganado!");
+        this.hasPlayerWon = true;
+
+        setTimeout(() => {
+          let dialogRef = this.dialog.open(WinModalComponent, {
+            width: '800px'
+          })
+          
+        }, 2000);
+      }
+
       // managear session storage y cambiar los estilos de los id de los tipos
       this.service.getTemtem(this.selectTem).subscribe(response =>{
         this.getTemTypes(response);
@@ -116,9 +134,11 @@ export class MainComponent {
       let type = this.testedTypes[i];
       if (this.checkType(type)) {
         document.getElementById(type)!.classList.add("targetType", "scale-125", "transition-all")
+        document.getElementById("qm-" + type)!.classList.add("opacity-0")
 
       }else{
         document.getElementById(type)?.classList.add("opacity-20", "grayscale", "transition-all");
+        document.getElementById("qm-" + type)!.classList.add("opacity-0")
       }
       
     }
