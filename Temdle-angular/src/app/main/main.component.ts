@@ -41,6 +41,7 @@ export class MainComponent {
   
   //win states
   public hasPlayerWon : boolean = false;
+  public testedTems : number[] = [];
 
   ngOnInit() : void
   {
@@ -56,7 +57,7 @@ export class MainComponent {
 
   getTargetId() : number
   {
-    return 57  ;
+    return 1;
   }
 
   private getTarget()
@@ -94,13 +95,19 @@ export class MainComponent {
       temRef.instance.selectedTem = this.selectTem;
       temRef.instance.targetId = this.targetId;
 
+      this.testedTems.push(Number(this.selectTem));
+
       if (this.selectTem == this.targetId) {
         console.log("has ganado!");
         this.hasPlayerWon = true;
-
+        
         setTimeout(() => {
           let dialogRef = this.dialog.open(WinModalComponent, {
-            width: '800px'
+            width: '800px',
+            data : {
+              'tems' : this.testedTems,
+              'info' : this.allTemtems
+            }
           })
           
         }, 2000);
