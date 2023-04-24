@@ -113,7 +113,7 @@ export class MainComponent {
         }, 2000);
       }
 
-      // managear session storage y cambiar los estilos de los id de los tipos
+      // manage session storage here
       this.service.getTemtem(this.selectTem).subscribe(response =>{
         this.getTemTypes(response);
         this.changeTypesStyle();
