@@ -10,24 +10,30 @@ use Doctrine\ORM\Mapping as ORM;
 class Daily
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $Date = null;
+    #[ORM\Column(type: Types::STRING)]
+    private ?string $Date = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getDate(): ?string
     {
         return $this->Date;
     }
 
-    public function setDate(\DateTimeInterface $Date): self
+    public function setDate(string $Date): self
     {
         $this->Date = $Date;
 

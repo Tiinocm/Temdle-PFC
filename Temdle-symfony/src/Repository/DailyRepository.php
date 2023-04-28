@@ -16,8 +16,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class DailyRepository extends ServiceEntityRepository
 {
+    private $doctrine;
     public function __construct(ManagerRegistry $registry)
     {
+        $this->doctrine = $registry;
         parent::__construct($registry, Daily::class);
     }
 
@@ -37,6 +39,15 @@ class DailyRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function insert($id, $date)
+    {
+        $daily = new Daily;
+        $daily->setId($id)
+        ->setDate($date);
+        $this->doctrine->getManager()->persist($daily);
+        $this->doctrine->getManager()->flush();
     }
 
 //    /**
