@@ -6,6 +6,7 @@ import { TEMplateComponent } from '../template/template.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Dialog } from '@angular/cdk/dialog';
 import { WinModalComponent } from '../win-modal/win-modal.component';
+import { DailyResponse } from '../models/daily-api';
 
 @Component({
   selector: 'app-main',
@@ -36,8 +37,9 @@ export class MainComponent {
 
   // game logic stuff
   public testedTypes : string[] = [];
-  public targetId : number = this.getTargetId();
+  public targetId : number = 0;
   public target : any = ""
+  public daily : DailyResponse = {id: 0};
   
   //win states
   public hasPlayerWon : boolean = false;
@@ -48,22 +50,26 @@ export class MainComponent {
     this.defSelect = this.selectTem;
 
     this.getTems();
-    this.getTarget()
+    this.getTargetId();
     this.searchCtrl.valueChanges.pipe().subscribe(() =>{
       this.filterTems();
       
     })
   }
 
-  getTargetId() : number
+  getTargetId()
   {
-    return 1;
+    this.service.getDaily().subscribe(response => {
+      this.targetId = response.id
+      this.getTarget()
+    })
   }
 
   private getTarget()
   {
     this.service.getTemtem(this.targetId).subscribe(response =>{
       this.target = response;
+      
     })
   }
 
