@@ -79,8 +79,6 @@ export class TEMplateComponent {
     }else{
       this.heightImg = "Techniques/UI-Common_Techniques_Priority_VeryLow"
     }
-    console.log("height: " + temHeight + ", " + targetHeight + ", ");
-    console.log("weight: " + temWeight + ", " + targetWeight + ", ");
     
     if (temWeight < targetWeight) {
       this.weightImg = "Other/stage_up"

@@ -104,7 +104,6 @@ export class MainComponent {
       this.testedTems.push(Number(this.selectTem));
 
       if (this.selectTem == this.targetId) {
-        console.log("has ganado!");
         this.hasPlayerWon = true;
         
         setTimeout(() => {

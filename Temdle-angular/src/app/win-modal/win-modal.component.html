@@ -2,5 +2,42 @@
     <div class="text-6xl temfont">
         Victory!
     </div>
-<!--     {{summary}} -->
+
+<!--     <div class="mx-auto">
+        <img class="inline-block w-12" src="../../assets/Icons/{{img}}.png" alt="" *ngFor="let img of summary">
+    </div> -->
+
+    <div class="mx-auto text-center">
+        <table class="mx-auto">
+            <tr class="table-header-group mt-6">
+                <td class="px-4">
+                    height
+                </td>
+                <td class="px-4">
+                    Weight
+                </td>
+                <td class="px-4">
+                    Type1
+                </td>
+                <td class="px-4">
+                    Type2
+                </td>
+            </tr>
+            <tr class="mt-4" *ngFor="let try of summary">
+                <td class="border-b-2 h-14">
+                    <img class="w-10 inline-block" src="../../assets/Icons/{{try[0]}}.png" alt="">
+                </td>
+                <td class="border-b-2 h-14">
+                    <img class="w-10 inline-block" src="../../assets/Icons/{{try[1]}}.png" alt="">
+                </td>
+                <td class="border-b-2 h-14 text-2xl">
+                    {{try[2]}}
+                </td>
+                <td class="border-b-2 h-14 text-2xl">
+                    {{try[3]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+
 </section>
