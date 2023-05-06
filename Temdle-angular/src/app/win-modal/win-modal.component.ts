@@ -17,20 +17,31 @@ export class WinModalComponent {
   public printInfo : any[] = []
   public targetInfo : any;
   public summary : Array<string[]> = [[]];
+  public clipboardText : string = "";
+  private urlGame : string = "https://www.testUrl.es"
+
+  private stageUp : string = "Other/stage_up";
+  private stageDown : string = "Other/stage_down";
+  private stageEqual : string = "Techniques/UI-Common_Techniques_Priority_VeryLow"
 
   ngOnInit()
   {
-    let arrayTems : number[] = this.data.tems;
 
-    let target = arrayTems.pop()
+    let arrayTems : number[] = this.data.tems;
+    let target = arrayTems[arrayTems.length -1]
     
     this.targetInfo = this.data.info[target! - 1];
-    for (let i = 0; i < this.data.info.length; i++) {
-      if (arrayTems.indexOf(this.data.info[i].number) !== -1) {
-        this.temInfo.push(this.data.info[i])
+
+    for (let i = 0; i < arrayTems.length; i++) {
+      for (let j = 0; j < this.data.info.length; j++) {
+        if (this.data.info[j].number === arrayTems[i]) {
+          this.temInfo.push(this.data.info[j])
+        }
+        
       }
     }
 
+    this.clipboardText += "Temdle completed in " + arrayTems.length + " attempts \n \n"
     
     let targetHeight = this.targetInfo!.details.height.cm
     let targetWeight = this.targetInfo!.details.weight.kg
@@ -43,54 +54,45 @@ export class WinModalComponent {
 
       if (height < targetHeight) {
         this.summary[i] = []
-        this.summary[i].push("Other/stage_up")
+        this.summary[i].push(this.stageUp)
+        this.clipboardText += "🔼"
       }else if(height > targetHeight){
         this.summary[i] = []
-        this.summary[i].push("Other/stage_down")
+        this.summary[i].push(this.stageDown)
+        this.clipboardText += "🔽"
       }else{
         this.summary[i] = []
-        this.summary[i].push("Techniques/UI-Common_Techniques_Priority_VeryLow")
+        this.summary[i].push(this.stageEqual)
+        this.clipboardText += "🟩"
       }
 
       if (weight < targetWeight) {
-        this.summary[i].push("Other/stage_up")
+        this.summary[i].push(this.stageUp)
+        this.clipboardText += "🔼"
       }else if(weight > targetWeight){
-        this.summary[i].push("Other/stage_down")
+        this.summary[i].push(this.stageDown)
+        this.clipboardText += "🔽"
       }else{
-        this.summary[i].push("Techniques/UI-Common_Techniques_Priority_VeryLow")
+        this.summary[i].push(this.stageEqual)
+        this.clipboardText += "🟩"
       }
 
       let typesChecked = this.checkTypes(types, targetTypes)
-      // console.log(test, this.temInfo[i].name);
-        typesChecked.forEach(element =>{
-          if (element) {
-            this.summary[i].push("🟩");
-          }else{
-            this.summary[i].push("🟥");
-          }
-        })
       
-
-        /*    if (targetTypes.length === 1) {
-        let typesChecked = this.checkTypesOne(types, targetTypes);
-        if (typesChecked === 1) {
+      typesChecked.forEach(element =>{
+        if (element) {
           this.summary[i].push("🟩");
-          this.summary[i].push("🟩");
-        }else if (typesChecked === 2) {
+          this.clipboardText += "🟩"
+        }else{
           this.summary[i].push("🟥");
-          this.summary[i].push("🟥");
-        }else if (typesChecked === 3){
-          this.summary[i].push("🟩");
-          this.summary[i].push("🟥");
+          this.clipboardText += "🟥"
         }
-      }
-
-      if (targetTypes.length === 2) {
-        let typesCheckedTwo = this.checkTypesTwo(types, targetTypes)
-      } */
-
+      })
+      this.clipboardText += "\n"
     }
-    console.log(this.summary);
+
+    this.clipboardText += "\n"
+    this.clipboardText += "Do you want to try? " + this.urlGame;
     
   }
 
@@ -104,30 +106,13 @@ export class WinModalComponent {
     return typeTested;
   }
 
-/*   private checkTypesOne(types : string[], targetTypes : string[]) : number
+  clipboard(event : MouseEvent)
   {
-    if (types.length === 1) {
-      if (types.includes(targetTypes[0])) {
-        return 1;
-      }else{
-        return 2;
-      }
-    }else{
-      if (types.includes(targetTypes[0])) {
-        return 3;
-      }else{
-        return 2;
-      }
-    }
+    
+    const clicked : HTMLElement = <HTMLElement>event.target;
+    navigator.clipboard.writeText(this.clipboardText);
+    clicked.innerHTML = "Copied!"
+    clicked.classList.add("text-lime-600");
   }
-
-  private checkTypesTwo(types : string[], targetTypes : string[]) : boolean
-  {
-    if (types.includes(targetTypes[0])) {
-      return true;
-    }else{
-      return false;
-    }
-  } */
 
 }
