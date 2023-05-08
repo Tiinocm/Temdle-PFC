@@ -1,10 +1,10 @@
 <section class="mx-auto text-center text-6xl">
     <div>
         &nbsp;
-        <h1 class="mt-4" (click)="getTypes()">
+        <h1 class="mt-4">
             Types
         </h1>
-        <aside class="bg-opacity-25 bg-white w-2/3 rounded-xl mx-auto p-4">
+        <aside class="bg-opacity-25 bg-white lg:w-2/3 md:w-2/3 rounded-xl mx-auto p-4 lg:block flex flex-wrap justify-center">
             <span *ngFor="let type of types">
                 <img  src="../../assets/Icons/Types/{{type.name}}.png" alt="{{type.name}} type" id="{{type.name}}" class="mx-4 w-14 inline-block opacity-80">
                 <img class="inline-block w-10 relative right-20 top-4" id="qm-{{type.name}}" src="../../assets/Icons/Other/question_mark.webp" alt="question mark for {{type.name}}">

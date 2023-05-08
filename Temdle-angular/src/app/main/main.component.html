@@ -4,10 +4,10 @@
         <div class="flex justify-center w-3/5 m-auto" *ngIf="!hasPlayerWon">
 
             <form (ngSubmit)="onSubmit()" class="flex">
-                <label for="search" class="sr-only">Busca un temtem</label>
-                <mat-select name="temtem" id="select" placeholder="Busca un temtem..." class="h-11 my-5 px-5 mx-auto p-2 rounded-s-xl bg-white shadow-md min-w-full" [(ngModel)]="selectTem">
+                <label for="search" class="sr-only">Search a Temtem</label>
+                <mat-select name="temtem" id="select" placeholder="Search a Temtem.." class="h-11 my-5 px-5 mx-auto p-2 rounded-s-xl bg-white shadow-md min-w-full" [(ngModel)]="selectTem">
                     <mat-option value="def" selected>
-                        <ngx-mat-select-search placeholderLabel="Busca un temtem..." noEntriesFoundLabel="Ningún temtem encontrado" [formControl]="searchCtrl"></ngx-mat-select-search>
+                        <ngx-mat-select-search placeholderLabel="Search a Temtem..." noEntriesFoundLabel="No temtem found" [formControl]="searchCtrl"></ngx-mat-select-search>
                     </mat-option>
                      <mat-option *ngFor="let temtem of temtems" value="{{temtem.number}}" class="opcion" (click)="showBtn()" >
                        <span class="inline-block w-[140px]"> {{temtem.name}} </span> <img src="{{temtem.portraitWikiUrl}}" alt="" class="inline-block float-right">
